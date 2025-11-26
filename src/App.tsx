@@ -5,8 +5,11 @@ import { Grid } from '@mui/material';
 import './App.css'
 import HeaderUI from "./components/HeaderUI"
 import AlertUI from './components/AlertUI';
+import SelectorUI from './components/SelectorUI';
 
-function App() {
+
+
+export default function App() {
   //const [count, setCount] = useState(0)
 
   return (
@@ -21,7 +24,7 @@ function App() {
       <Grid container justifyContent="right" alignItems="center"><AlertUI description="NO SE PREVEEN LLUVIAS"></AlertUI></Grid>
 
       {/* Selector */}
-      <Grid size={{ xs: 12, md: 3 }}>Elemento: Selector</Grid>
+      <Grid size={{ xs: 12, md: 3 }}><SelectorUI/></Grid>
 
       {/* Indicadores */}
       <Grid size={{ xs: 12, md: 9 }}>Elemento: Indicadores</Grid>
@@ -44,4 +47,4 @@ function App() {
   );
 }
 
-export default App
+ 

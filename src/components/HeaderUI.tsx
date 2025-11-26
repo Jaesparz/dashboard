@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 
+//Componente -> fragmento de interfaz de usuario que tiene estados
 
 export default function HeaderUI() {
 
