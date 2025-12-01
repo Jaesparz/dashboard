@@ -6,16 +6,25 @@ import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
 
 
-
+//PERSISTENCIA DE LA MEMORIA, react ofrece un componente para guardar estos "estados".
 
 export default function SelectorUI() {
 
+
    const [cityInput, setCityInput] = useState('');
+
+   //uso la cache de la aplicacion solamente para ese componente -> usestate
 
    let handleChange = (event: SelectChangeEvent<string>) => {
 
-        setCityInput(event.target.value)
+      alert(event.target.value);
+
+      setCityInput(event.target.value);
    };
+
+   let handleClick = () =>{
+      alert("xd")
+   }
 
 
    return (
@@ -23,6 +32,7 @@ export default function SelectorUI() {
          <InputLabel id="city-select-label">Ciudad</InputLabel>
          <Select
             onChange={handleChange} 
+            onClick= {handleClick}
             labelId="city-select-label"
             id="city-simple-select"
             label="Ciudad"
