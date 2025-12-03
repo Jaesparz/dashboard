@@ -6,11 +6,15 @@ import './App.css'
 import HeaderUI from "./components/HeaderUI"
 import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
+import IndicatorUI from './components/IndicatorUI';
+import useFetchData from './functions/useFetchData';
 
 
 
 export default function App() {
   //const [count, setCount] = useState(0)
+
+  const dataFetcherOutput = useFetchData();
 
   return (
 
@@ -24,10 +28,40 @@ export default function App() {
       <Grid container justifyContent="right" alignItems="center"><AlertUI description="NO SE PREVEEN LLUVIAS"></AlertUI></Grid>
 
       {/* Selector */}
-      <Grid size={{ xs: 12, md: 3 }}><SelectorUI/></Grid>
+      <Grid size={{ xs: 12, md: 3 }}><SelectorUI /></Grid>
 
       {/* Indicadores */}
-      <Grid size={{ xs: 12, md: 9 }}>Elemento: Indicadores</Grid>
+      <Grid size={{ xs: 12, md: 9 }}>
+
+
+        <Grid container size={{ xs: 12, md: 9 }} >
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <IndicatorUI title='Temperatura (2m)' description='XX°C' />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            {dataFetcherOutput &&
+              (<IndicatorUI
+                title='Temperatura (2m)'
+                description={`${dataFetcherOutput.current.temperature_2m} ${dataFetcherOutput.current_units.temperature_2m}`} />)
+            }
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            {/* IndicatorUI con la Velocidad del viento en km/h' */}
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            {/* IndicatorUI con la Humedad relativa en %' */}
+          </Grid>
+
+        </Grid>
+
+
+
+
+      </Grid>
 
       {/* Gráfico */}
       <Grid sx={{ display: { xs: "none", md: "block" } }}>Elemento: Gráfico</Grid>
@@ -47,4 +81,4 @@ export default function App() {
   );
 }
 
- 
+
