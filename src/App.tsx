@@ -14,7 +14,8 @@ import useFetchData from './functions/useFetchData';
 export default function App() {
   //const [count, setCount] = useState(0)
 
-  const dataFetcherOutput = useFetchData();
+  const { data, loading, error } = useFetchData();
+
 
   return (
 
@@ -31,37 +32,99 @@ export default function App() {
       <Grid size={{ xs: 12, md: 3 }}><SelectorUI /></Grid>
 
       {/* Indicadores */}
-      <Grid size={{ xs: 12, md: 9 }}>
+
+      <Grid container size={{ xs: 12, md: 9 }} >
 
 
-        <Grid container size={{ xs: 12, md: 9 }} >
+        {/* TEMPERATURA ACTUAL */}
 
-          <Grid size={{ xs: 12, md: 3 }}>
-            <IndicatorUI title='Temperatura (2m)' description='XX°C' />
-          </Grid>
+        <Grid size={{ xs: 12, md: 3 }}>
+          <IndicatorUI title='Temperatura (2m)' description='XX°C' />
+        </Grid>
 
-          <Grid size={{ xs: 12, md: 3 }}>
-            {dataFetcherOutput &&
-              (<IndicatorUI
-                title='Temperatura (2m)'
-                description={`${dataFetcherOutput.data.current.temperature_2m} ${dataFetcherOutput.current_units.temperature_2m}`} />)
-            }
-          </Grid>
+        <Grid size={{ xs: 12, md: 3 }}>
 
-          <Grid size={{ xs: 12, md: 3 }}>
-            {/* IndicatorUI con la Velocidad del viento en km/h' */}
-          </Grid>
+          {loading && (
+            <IndicatorUI title="Cargando..." description="..." />
+          )}
+          {error && (
+            <IndicatorUI title="Error" description={error} />
+          )}
+          {data && !loading && !error && (
+            <IndicatorUI
+              title="Temperatura (2m)"
+              description={`${data.current.temperature_2m} ${data.current_units.temperature_2m}`}
+            />
 
-          <Grid size={{ xs: 12, md: 3 }}>
-            {/* IndicatorUI con la Humedad relativa en %' */}
-          </Grid>
-
+          )}
         </Grid>
 
 
+        {/* TEMPERATURA APARENTE */}
 
+        <Grid size={{ xs: 12, md: 3 }}>
+
+          {loading && (
+            <IndicatorUI title="Cargando..." description="..." />
+          )}
+          {error && (
+            <IndicatorUI title="Error" description={error} />
+          )}
+          {data && !loading && !error && (
+            <IndicatorUI
+              title="Temperatura Aparente (°C)"
+              description={`${data.current.apparent_temperature} ${data.current_units.apparent_temperature}`}
+            />
+
+          )}
+
+        </Grid>
+      </Grid>
+
+
+      {/*  VELOCIDAD DEL VIENTO */}
+
+      <Grid size={{ xs: 12, md: 3 }}>
+
+        {loading && (
+          <IndicatorUI title="Cargando..." description="..." />
+        )}
+        {error && (
+          <IndicatorUI title="Error" description={error} />
+        )}
+        {data && !loading && !error && (
+          <IndicatorUI
+            title="Velocidad Del Viento (km/h)"
+            description={`${data.current.wind_speed_10m} ${data.current_units.wind_speed_10m}`}
+          />
+
+        )}
 
       </Grid>
+
+
+      {/* HUMEDAD RELATIVA */}
+
+      <Grid size={{ xs: 12, md: 3 }}>
+
+        {loading && (
+          <IndicatorUI title="Cargando..." description="..." />
+        )}
+        {error && (
+          <IndicatorUI title="Error" description={error} />
+        )}
+        {data && !loading && !error && (
+          <IndicatorUI
+            title="Humedad Relativa (%)"
+            description={`${data.current.relative_humidity_2m} ${data.current_units.relative_humidity_2m}`}
+          />
+
+        )}
+
+      </Grid>
+
+
+
 
       {/* Gráfico */}
       <Grid sx={{ display: { xs: "none", md: "block" } }}>Elemento: Gráfico</Grid>
@@ -72,7 +135,7 @@ export default function App() {
       {/* Información adicional */}
       <Grid>Elemento: Información adicional</Grid>
 
-    </Grid>
+    </Grid >
 
 
 
