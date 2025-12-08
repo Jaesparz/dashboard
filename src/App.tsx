@@ -44,7 +44,7 @@ export default function App() {
             {dataFetcherOutput &&
               (<IndicatorUI
                 title='Temperatura (2m)'
-                description={`${dataFetcherOutput.current.temperature_2m} ${dataFetcherOutput.current_units.temperature_2m}`} />)
+                description={`${dataFetcherOutput.data.current.temperature_2m} ${dataFetcherOutput.current_units.temperature_2m}`} />)
             }
           </Grid>
 
