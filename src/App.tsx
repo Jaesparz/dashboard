@@ -9,6 +9,9 @@ import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
 import useFetchData from './functions/useFetchData';
 
+import TableUI from './components/TableUI';
+import ChartUI from './components/ChartUI';
+
 
 
 export default function App() {
@@ -127,10 +130,14 @@ export default function App() {
 
 
       {/* Gráfico */}
-      <Grid sx={{ display: { xs: "none", md: "block" } }}>Elemento: Gráfico</Grid>
+      <Grid sx={{ display: { xs: "none", md: "block" } }}>
+        <ChartUI data={data} loading={loading} error={error} />
+      </Grid>
 
       {/* Tabla */}
-      <Grid sx={{ display: { xs: "none", md: "block" } }}>Elemento: Tabla</Grid>
+      <Grid sx={{ display: { xs: "none", md: "block" } }}>
+        <TableUI data={data} loading={loading} error={error} />
+      </Grid>
 
       {/* Información adicional */}
       <Grid>Elemento: Información adicional</Grid>
