@@ -130,9 +130,17 @@ export default function App() {
 
 
       {/* Gráfico */}
-      <Grid sx={{ display: { xs: "none", md: "block" } }}>
-        <ChartUI data={data} loading={loading} error={error} />
-      </Grid>
+      {data && !loading && !error && (
+        <Grid sx={{ display: { xs: "none", md: "block" } }}>
+          <ChartUI
+            temperatures={data.hourly.temperature_2m.slice(0, 24)}
+            velocidadViento={data.hourly.wind_speed_10m.slice(0, 24)}
+            tiempo={data.hourly.time.slice(0, 24)}
+            temperatureUnits={data.hourly_units.temperature_2m} // Nota: No necesitas .slice(0, 24) aquí si solo es una unidad
+            velocidadVUnits={data.hourly_units.wind_speed_10m} // Nota: No necesitas .slice(0, 24) aquí
+          />
+        </Grid>
+      )}
 
       {/* Tabla */}
       <Grid sx={{ display: { xs: "none", md: "block" } }}>
