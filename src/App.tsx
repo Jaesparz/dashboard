@@ -12,6 +12,9 @@ import useFetchData from './functions/useFetchData';
 import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
 
+// Importación del asistente de Cohere
+import { CohereUI } from './components/CohereUI';
+
 
 
 export default function App() {
@@ -29,7 +32,7 @@ export default function App() {
     <Grid container spacing={5} justifyContent="center" alignItems="center">
 
       {/* Encabezado */}
-      <Grid size={{ xs: 12, md: 12 }}><HeaderUI /></Grid>
+      <Grid size={{ xs: 12, md: 12 }} ><HeaderUI /></Grid>
 
       {/* Alertas */}
       <Grid container justifyContent="right" alignItems="center"><AlertUI description="NO SE PREVEEN LLUVIAS"></AlertUI></Grid>
@@ -44,9 +47,7 @@ export default function App() {
 
         {/* TEMPERATURA ACTUAL */}
 
-        <Grid size={{ xs: 12, md: 3 }}>
-          <IndicatorUI title='Temperatura (2m)' description='XX°C' />
-        </Grid>
+      
 
         <Grid size={{ xs: 12, md: 3 }}>
 
@@ -85,7 +86,6 @@ export default function App() {
           )}
 
         </Grid>
-      </Grid>
 
 
       {/*  VELOCIDAD DEL VIENTO */}
@@ -128,6 +128,8 @@ export default function App() {
         )}
 
       </Grid>
+      
+      </Grid>
 
 
 
@@ -151,7 +153,7 @@ export default function App() {
       </Grid>
 
       {/* Información adicional */}
-      <Grid>Elemento: Información adicional</Grid>
+      <Grid>  <CohereUI weatherData={data} loading={loading} />  </Grid>
 
     </Grid >
 

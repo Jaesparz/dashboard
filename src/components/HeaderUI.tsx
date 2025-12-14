@@ -10,7 +10,7 @@ export default function HeaderUI() {
             variant="h2"
             component="h1"
             sx={{ fontWeight: 'bold' }}>
-            Dashboard
+            ECUAWEATHER
         </Typography>
 
     )
