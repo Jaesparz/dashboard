@@ -8,8 +8,12 @@ import { useState } from 'react';
 
 //PERSISTENCIA DE LA MEMORIA, react ofrece un componente para guardar estos "estados".
 
-export default function SelectorUI() {
+ interface SelectorProps {
+   onOptionSelect: (option: string) => void;
+}
+export default function Selector({ onOptionSelect }: SelectorProps) {
 
+  
 
    const [cityInput, setCityInput] = useState('');
 
@@ -20,11 +24,11 @@ export default function SelectorUI() {
       alert(event.target.value);
 
       setCityInput(event.target.value);
+      onOptionSelect(event.target.value);
+
    };
 
-   let handleClick = () =>{
-      alert("xd")
-   }
+   
 
 
    return (
@@ -32,7 +36,6 @@ export default function SelectorUI() {
          <InputLabel id="city-select-label">Ciudad</InputLabel>
          <Select
             onChange={handleChange} 
-            onClick= {handleClick}
             labelId="city-select-label"
             id="city-simple-select"
             label="Ciudad"
